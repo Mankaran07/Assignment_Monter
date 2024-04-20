@@ -15,16 +15,22 @@ function PaginationBar({ currentPage, totalPages, count, setCount }) {
     <div className="w-full relative bottom-0 mb-5">
       <div className="flex items-center justify-center gap-10 mx-auto">
         <div className="flex">
-          <div className="flex items-center gap-3">
+          <div
+            className="flex items-center gap-3 cursor-pointer"
+            onClick={() => {
+              if (currentPage != 1) {
+                router.replace(`/reports/${currentPage - 1}`);
+              }
+            }}
+          >
             <AiOutlineVerticalRight />
-            <span className="cursor-pointer">Prev</span>
+            <span>Prev</span>
           </div>
           {pageNumbers.map((page) => (
             <button
-              className={twMerge(
-                "h-10 w-10 rounded-md text-slate-400 border border-slate-400 ml-3 duration-300",
-                currentPage === page && "bg-[#f05225]"
-              )}
+              className={`h-10 w-10 rounded-md text-slate-400 border border-slate-400 ml-3 duration-300 ${
+                currentPage == page ? "bg-[#f05225] text-white" : "bg-white"
+              }`}
               key={page}
               onClick={() => {
                 router.replace(`/reports/${page}`);
@@ -33,8 +39,15 @@ function PaginationBar({ currentPage, totalPages, count, setCount }) {
               {page}
             </button>
           ))}
-          <div className="flex items-center gap-3 ml-3">
-            <span className="cursor-pointer">Next</span>
+          <div
+            className="flex items-center gap-3 ml-3 cursor-pointer"
+            onClick={() => {
+              if (currentPage != totalPages) {
+                router.replace(`/reports/${parseInt(currentPage) + 1}`);
+              }
+            }}
+          >
+            <span>Next</span>
             <AiOutlineVerticalLeft />
           </div>
         </div>

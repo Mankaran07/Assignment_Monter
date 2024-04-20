@@ -12,7 +12,7 @@ function Reports({ params }) {
   const [currentPage, setCurrentPage] = useState(params.page);
   const [count, setCount] = useState(10);
   const [reports, setReports] = useState([]);
-
+  const total = data.length / count;
   useEffect(() => {
     getReports();
   }, [count]);
@@ -20,7 +20,7 @@ function Reports({ params }) {
   function getReports() {
     const newArr = [];
     for (let i = 0; i < count; i++) {
-      newArr.push(data[i]);
+      newArr.push(data[i * currentPage]);
     }
     setReports(newArr);
   }
@@ -32,7 +32,12 @@ function Reports({ params }) {
             Recently Genereated Reports
           </h1>
           <div className=" flex absolute right-0 pr-4 gap-2 justify-self-end">
-            <button className=" border-2 border-solid border-black rounded-lg hover:border-slate-400">
+            <button
+              className=" border-2 border-solid border-black rounded-lg hover:border-slate-400"
+              onClick={() => {
+                alert("This feature will be available soon");
+              }}
+            >
               <CiFilter className="size-7 hover:border-slate-400" />
             </button>
             <button
@@ -63,7 +68,7 @@ function Reports({ params }) {
       </div>
       <PaginationBar
         currentPage={currentPage}
-        totalPages={5}
+        totalPages={total}
         count={count}
         setCount={setCount}
       />
