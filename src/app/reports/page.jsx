@@ -1,6 +1,8 @@
 import React from "react";
 import { CiFilter } from "react-icons/ci";
 import { IoIosClose } from "react-icons/io";
+import ReportCard from "@/components/ReportCard";
+import { data } from "./data";
 
 function reports() {
   return (
@@ -23,6 +25,16 @@ function reports() {
           <h6 className="col-span-1">Date</h6>
           <h6 className="col-span-3">Report Name</h6>
           <h6 className="col-span-1">Download</h6>
+        </div>
+        <div>
+          {data.map((data) => (
+            <ReportCard
+              key={data.id}
+              id={data.id}
+              name={data.name}
+              timestamp={data.timestamp}
+            />
+          ))}
         </div>
       </div>
     </div>
