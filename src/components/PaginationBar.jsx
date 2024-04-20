@@ -1,9 +1,9 @@
 "use client";
-import { twMerge } from "tailwind-merge";
 import React from "react";
 import { AiOutlineVerticalRight, AiOutlineVerticalLeft } from "react-icons/ai";
 import { useRouter } from "next/navigation";
-function PaginationBar({ currentPage, totalPages, count, setCount }) {
+
+function PaginationBar({ currentPage, totalPages, count }) {
   const pageNumbers = [];
   for (let i = 1; i <= totalPages; i++) {
     pageNumbers.push(i);
@@ -19,7 +19,7 @@ function PaginationBar({ currentPage, totalPages, count, setCount }) {
             className="flex items-center gap-3 cursor-pointer"
             onClick={() => {
               if (currentPage != 1) {
-                router.replace(`/reports/${currentPage - 1}`);
+                router.replace(`/reports/${currentPage - 1}-${count}`);
               }
             }}
           >
@@ -33,7 +33,7 @@ function PaginationBar({ currentPage, totalPages, count, setCount }) {
               }`}
               key={page}
               onClick={() => {
-                router.replace(`/reports/${page}`);
+                router.replace(`/reports/${page}-${count}`);
               }}
             >
               {page}
@@ -43,7 +43,9 @@ function PaginationBar({ currentPage, totalPages, count, setCount }) {
             className="flex items-center gap-3 ml-3 cursor-pointer"
             onClick={() => {
               if (currentPage != totalPages) {
-                router.replace(`/reports/${parseInt(currentPage) + 1}`);
+                router.replace(
+                  `/reports/${parseInt(currentPage) + 1}-${count}`
+                );
               }
             }}
           >
@@ -56,7 +58,7 @@ function PaginationBar({ currentPage, totalPages, count, setCount }) {
           <select
             onChange={(event) => {
               const { name, value } = event.target;
-              setCount(value);
+              router.replace(`/reports/1-${value}`);
             }}
             value={count}
           >

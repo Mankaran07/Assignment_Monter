@@ -18,7 +18,12 @@ function ReportCard({ id, timestamp, name }) {
         <span>{time}</span>
       </div>
       <p className="col-span-3">{name}</p>
-      <HiOutlineDocumentArrowDown className="col-span-1 size-7 cursor-pointer hover:text-slate-600" />
+      <HiOutlineDocumentArrowDown
+        className="col-span-1 size-7 cursor-pointer hover:text-slate-600"
+        onClick={() => {
+          alert("The file has started downloading!!!");
+        }}
+      />
     </div>
   );
 }

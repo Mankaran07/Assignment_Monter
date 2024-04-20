@@ -12,7 +12,7 @@ export default function Home() {
       <button
         className="bg-slate-600 hover:bg-slate-400 text-white font-bold py-2 px-4 rounded w-fit"
         onClick={() => {
-          router.replace(`/reports/1`);
+          router.replace(`/reports/1-10`);
         }}
       >
         Click Here

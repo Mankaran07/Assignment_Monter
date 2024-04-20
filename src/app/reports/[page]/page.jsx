@@ -9,10 +9,9 @@ import { useRouter } from "next/navigation";
 
 function Reports({ params }) {
   const router = useRouter();
-  const [currentPage, setCurrentPage] = useState(params.page);
-  const [count, setCount] = useState(10);
+  const [currentPage, count] = params.page.split("-");
   const [reports, setReports] = useState([]);
-  const total = data.length / count;
+  const NumberOfPages = data.length / count;
   useEffect(() => {
     getReports();
   }, [count]);
@@ -68,9 +67,8 @@ function Reports({ params }) {
       </div>
       <PaginationBar
         currentPage={currentPage}
-        totalPages={total}
+        totalPages={NumberOfPages}
         count={count}
-        setCount={setCount}
       />
     </div>
   );
